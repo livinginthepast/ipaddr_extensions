@@ -17,4 +17,11 @@
 # limitations under the License.
 #
 
-chef_gem 'ipaddr_extensions'
+ohai "reload ip_scopes" do
+  action :nothing
+  plugin "ip_scopes"
+end
+
+chef_gem 'ipaddr_extensions' do
+  notifies :reload, 'ohai[reload ip_scopes]', :immediately
+end
