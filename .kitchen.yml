@@ -1,0 +1,19 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-12.04
+    driver:
+      network:
+        - ['public_network', bridge: 'en0: Wi-Fi (AirPort)']
+        - ['private_network', ip: '192.168.33.33']
+
+suites:
+  - name: default
+    run_list:
+      - recipe[test_cookbook::default]
+    attributes:

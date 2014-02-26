@@ -1,27 +1,5 @@
-#
-# Cookbook Name:: ipaddr_extensions
-# Recipe:: default
-#
-# Copyright 2013, Wanelo, Inc
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
-ohai "reload ip_scopes" do
-  action :nothing
-  plugin "ip_scopes"
-end
-
-chef_gem 'ipaddr_extensions' do
-  notifies :reload, 'ohai[reload ip_scopes]', :immediately
-end
+# This recipe does nothing, but it does force the ipaddr_extensions cookbook
+# to stay in the runlist. See libraries/gem_installation for the heart of the
+# craziness. Since the node needs to be updated from ohai before any attribute
+# files load, we have to go to the bad place. chef_gem and ohai_plugin providers
+# run too late for this to be effective.
