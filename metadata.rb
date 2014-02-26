@@ -4,7 +4,7 @@ maintainer_email 'sax@livinginthepast.org'
 license          'MIT'
 description      'Adds the ipaddr_extensions gem to chef'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.0'
+version          '0.3.0'
 
 recipe "ipaddr_extensions::default", "Installs ipaddr_extensions via chef_gem"
 
