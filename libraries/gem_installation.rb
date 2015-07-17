@@ -2,7 +2,12 @@ begin
   require 'ipaddr_extensions'
 rescue LoadError
   if Gem.respond_to?(:install)
-    Gem.install 'ipaddr_extensions'
+    begin
+      Gem.install 'ipaddr_extensions'
+    rescue LoadError
+      # RubyGems >= 2.3.0, <= 2.5.0 raises a new LoadError even when successful
+      raise if Gem.rubygems_version >= Gem::Version.new('2.5.0')
+    end
   else
     require 'rubygems/commands/install_command'
     cmd = Gem::Commands::InstallCommand.new
