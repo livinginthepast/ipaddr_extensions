@@ -1,9 +1,10 @@
 source "https://rubygems.org"
 
 gem 'emeril'
-gem 'pry-nav'
 gem 'berkshelf'
 gem 'chefspec'
+gem 'pry-nav'
+gem 'rake'
 gem 'rubocop'
 
 group :integration do
