@@ -11,20 +11,20 @@ rescue LoadError
   else
     require 'rubygems/commands/install_command'
     cmd = Gem::Commands::InstallCommand.new
-    cmd.handle_options %w(--no-ri --no-rdoc ipaddr_extensions)
+    cmd.handle_options %w[--no-ri --no-rdoc ipaddr_extensions]
 
     begin
       cmd.execute
-    rescue Gem::SystemExitException => e
+    rescue Gem::SystemExitException => _
     end
   end
 
   require 'ipaddr_extensions'
   require 'ohai'
 
-  puts "Reloading node attributes"
+  puts 'Reloading node attributes'
   ohai = ::Ohai::System.new
   ohai.all_plugins
   count = ObjectSpace.each_object(Chef::Node) { |n| n.automatic_attrs.merge! ohai.data }
-  raise "Whoops! Expected to monkey patch only the current node, found multiple" if count > 1
+  raise 'Whoops! Expected to monkey patch only the current node, found multiple' if count > 1
 end

@@ -1,13 +1,13 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem 'emeril'
 gem 'berkshelf'
 gem 'chefspec'
+gem 'emeril'
 gem 'pry-nav'
 gem 'rake'
 gem 'rubocop'
 
 group :integration do
-  gem 'test-kitchen'
   gem 'kitchen-vagrant'
+  gem 'test-kitchen'
 end

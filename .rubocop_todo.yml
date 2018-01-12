@@ -1,0 +1,9 @@
+Lint/HandleExceptions:
+  Exclude:
+    - 'libraries/gem_installation.rb'
+
+Metrics/BlockNesting:
+  Max: 4
+
+Metrics/LineLength:
+  Max: 100
