@@ -25,6 +25,12 @@ rescue LoadError
   puts 'Reloading node attributes'
   ohai = ::Ohai::System.new
   ohai.all_plugins
-  count = ObjectSpace.each_object(Chef::Node) { |n| n.automatic_attrs.merge! ohai.data }
-  raise 'Whoops! Expected to monkey patch only the current node, found multiple' if count > 1
+
+  count = 0
+  ObjectSpace.each_object(Chef::Node) do |node|
+    next unless node.name
+    node.automatic_attrs.merge! ohai.data
+    count += 1
+  end
+  raise "Whoops! Expected to monkey patch only the current node, found #{count}" if count > 1
 end
