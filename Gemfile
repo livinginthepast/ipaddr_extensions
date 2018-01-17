@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 gem 'berkshelf'
 gem 'chefspec'
-gem 'emeril'
 gem 'pry-nav'
 gem 'rake'
 gem 'rubocop'
+gem 'stove'
 
 group :integration do
   gem 'kitchen-vagrant'
